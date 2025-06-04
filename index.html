@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - Developer Profile</title>
+    <title>Tarun Thakur - Systems Architect</title>
     <style>
         * {
             margin: 0;
@@ -12,842 +12,809 @@
         }
 
         body {
-            font-family: 'JetBrains Mono', 'Fira Code', 'Monaco', 'Consolas', monospace;
-            background-color: #0d1117;
-            color: #c9d1d9;
+            font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 100%);
+            color: #e0e0e0;
             line-height: 1.6;
             padding: 20px;
             min-height: 100vh;
         }
 
-        .container {
-            max-width: 900px;
+        .terminal-container {
+            max-width: 1200px;
             margin: 0 auto;
-            background-color: #161b22;
-            border: 1px solid #30363d;
+            background: #1e1e1e;
+            border: 2px solid #333;
             border-radius: 8px;
-            padding: 24px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
         }
 
-        .file-header {
-            color: #7d8590;
+        .terminal-header {
+            background: linear-gradient(90deg, #2d2d2d, #3a3a3a);
+            padding: 12px 20px;
+            border-bottom: 1px solid #444;
+            display: flex;
+            align-items: center;
+        }
+
+        .terminal-buttons {
+            display: flex;
+            gap: 8px;
+            margin-right: 15px;
+        }
+
+        .btn {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .btn.close { background: #ff5f56; }
+        .btn.minimize { background: #ffbd2e; }
+        .btn.maximize { background: #27ca3f; }
+
+        .terminal-title {
             font-size: 14px;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #21262d;
+            color: #ccc;
+            font-weight: 500;
         }
 
-        .comment {
-            color: #7d8590;
+        .terminal-content {
+            padding: 30px;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .prompt {
+            color: #00ff88;
+            font-weight: bold;
+        }
+
+        .command {
+            color: #61dafb;
+            font-weight: bold;
+        }
+
+        .output {
+            margin-left: 0;
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            color: #ff6b6b;
+            font-size: 18px;
+            font-weight: bold;
+            border-bottom: 2px solid #444;
+            padding-bottom: 8px;
+            margin: 30px 0 20px 0;
+        }
+
+        .highlight {
+            color: #ffd93d;
+            font-weight: bold;
+        }
+
+        .metric {
+            color: #ff8c42;
+            font-weight: bold;
+        }
+
+        .tech {
+            color: #4ecdc4;
+            font-weight: 500;
+        }
+
+        .link {
+            color: #61dafb;
+            text-decoration: none;
+            border-bottom: 1px dotted #61dafb;
+        }
+
+        .link:hover {
+            color: #21a0c4;
+            border-bottom-color: #21a0c4;
+        }
+
+        .job-header {
+            background: #252525;
+            padding: 15px;
+            border-left: 4px solid #00ff88;
+            margin: 20px 0 15px 0;
+            border-radius: 4px;
+        }
+
+        .job-title {
+            color: #00ff88;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .company {
+            color: #ffd93d;
+            font-weight: bold;
+        }
+
+        .duration {
+            color: #ff8c42;
             font-style: italic;
         }
 
-        .section {
-            margin: 20px 0;
+        .achievement {
+            margin: 8px 0;
+            padding-left: 20px;
+            position: relative;
         }
 
-        .section-header {
-            color: #f85149;
+        .achievement::before {
+            content: "▸";
+            color: #00ff88;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .project-card {
+            background: #252525;
+            border: 1px solid #404040;
+            border-radius: 6px;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 4px solid #4ecdc4;
+        }
+
+        .project-title {
+            color: #4ecdc4;
+            font-size: 16px;
             font-weight: bold;
             margin-bottom: 8px;
         }
 
-        .key {
-            color: #79c0ff;
-            display: inline-block;
-            min-width: 120px;
+        .project-description {
+            color: #ccc;
+            margin-bottom: 12px;
         }
 
-        .equals {
-            color: #c9d1d9;
-            margin: 0 8px;
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 12px 0;
         }
 
-        .value {
-            color: #a5d6ff;
+        .tech-tag {
+            background: #333;
+            color: #4ecdc4;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            border: 1px solid #4ecdc4;
         }
 
-        .string {
-            color: #a5d6ff;
+        .skill-category {
+            margin: 15px 0;
+            padding: 15px;
+            background: #2a2a2a;
+            border-radius: 6px;
+            border-left: 3px solid #ff6b6b;
         }
 
-        .array {
-            color: #ffa657;
+        .skill-category-title {
+            color: #ff6b6b;
+            font-weight: bold;
+            margin-bottom: 8px;
         }
 
-        .bracket {
-            color: #f85149;
+        .skills-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
         }
 
-        .line {
-            margin: 4px 0;
-            padding-left: 0;
+        .typing-animation {
+            border-right: 2px solid #00ff88;
+            animation: blink 1s infinite;
         }
 
-        .nested {
-            padding-left: 20px;
+        @keyframes blink {
+            0%, 50% { border-color: #00ff88; }
+            51%, 100% { border-color: transparent; }
         }
 
-        .duration {
-            color: #56d364;
+        .performance-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
         }
 
-        .boolean {
-            color: #ffa657;
+        .metric-card {
+            background: #2a2a2a;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid #444;
+            text-align: center;
         }
 
-        .url {
-            color: #a5d6ff;
-            text-decoration: none;
-            border-bottom: 1px dotted #a5d6ff;
+        .metric-value {
+            color: #ffd93d;
+            font-size: 24px;
+            font-weight: bold;
+            display: block;
         }
 
-        .url:hover {
-            color: #58a6ff;
-            border-bottom-color: #58a6ff;
+        .metric-label {
+            color: #ccc;
+            font-size: 12px;
+            margin-top: 5px;
         }
 
-        .inline-table {
-            color: #ffa657;
-        }
-
-        /* Enhanced responsive design */
-        @media (max-width: 1024px) {
-            .container {
-                max-width: 95%;
-                margin: 0 auto;
-            }
-            
-            .key {
-                min-width: 110px;
-            }
-        }
-
+        /* Responsive Design */
         @media (max-width: 768px) {
             body {
-                padding: 8px;
-                font-size: 14px;
+                padding: 10px;
             }
             
-            .container {
-                padding: 16px;
-                border-radius: 6px;
-            }
-            
-            .key {
-                min-width: 90px;
+            .terminal-content {
+                padding: 20px 15px;
                 font-size: 13px;
             }
             
-            .section-header {
-                font-size: 15px;
+            .skills-list {
+                grid-template-columns: 1fr;
             }
             
-            .file-header {
-                font-size: 12px;
+            .performance-metrics {
+                grid-template-columns: 1fr;
             }
             
-            /* Better handling of long arrays on mobile */
-            .array {
-                word-break: break-word;
-                line-height: 1.5;
-            }
-            
-            /* Adjust nested indentation for mobile */
-            .nested {
-                padding-left: 16px;
-            }
-            
-            .line.nested[style*="padding-left: 40px"] {
-                padding-left: 24px !important;
+            .tech-stack {
+                flex-direction: column;
+                align-items: flex-start;
             }
         }
 
         @media (max-width: 480px) {
-            body {
-                padding: 4px;
-                font-size: 13px;
-                line-height: 1.5;
-            }
-            
-            .container {
-                padding: 12px;
-                border-radius: 4px;
-            }
-            
-            .key {
-                min-width: 80px;
+            .terminal-content {
+                padding: 15px 10px;
                 font-size: 12px;
-                display: block;
-                margin-bottom: 2px;
             }
             
-            .equals {
-                margin: 0 4px;
+            .section-title {
+                font-size: 16px;
             }
             
-            .section-header {
-                font-size: 14px;
-                margin-bottom: 6px;
-            }
-            
-            .file-header {
-                font-size: 11px;
-                margin-bottom: 16px;
-            }
-            
-            /* Stack key-value pairs vertically on very small screens */
-            .line {
-                margin: 6px 0;
-                word-wrap: break-word;
-                overflow-wrap: break-word;
-            }
-            
-            /* Better handling of long URLs on mobile */
-            .url {
-                word-break: break-all;
-                line-height: 1.4;
-            }
-            
-            /* Adjust arrays for mobile readability */
-            .array {
-                display: inline-block;
-                max-width: 100%;
-                word-break: break-word;
-                line-height: 1.6;
-            }
-            
-            /* Reduce nested indentation on very small screens */
-            .nested {
-                padding-left: 12px;
-            }
-            
-            .line.nested[style*="padding-left: 40px"] {
-                padding-left: 20px !important;
-            }
-            
-            /* Ensure achievement arrays are readable */
-            .section .line.nested[style*="padding-left"] .string {
-                display: block;
-                margin: 2px 0;
-                padding-left: 8px;
-                border-left: 2px solid #30363d;
+            .job-header {
+                padding: 10px;
             }
         }
 
-        /* Landscape orientation adjustments for mobile */
-        @media (max-width: 768px) and (orientation: landscape) {
-            body {
-                padding: 6px;
-            }
-            
-            .container {
-                padding: 14px;
-            }
-            
-            .key {
-                min-width: 100px;
-            }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
 
-        /* Large screen optimizations */
-        @media (min-width: 1200px) {
-            .container {
-                max-width: 1000px;
-                padding: 32px;
-            }
-            
-            body {
-                font-size: 15px;
-            }
-            
-            .key {
-                min-width: 140px;
-            }
+        ::-webkit-scrollbar-track {
+            background: #1e1e1e;
         }
 
-        /* Print styles */
-        @media print {
-            body {
-                background-color: white;
-                color: black;
-                padding: 0;
-            }
-            
-            .container {
-                box-shadow: none;
-                border: 1px solid #ccc;
-                background-color: white;
-            }
-            
-            .url {
-                color: blue;
-                text-decoration: underline;
-            }
-            
-            .comment {
-                color: #666;
-            }
-        }
-
-        /* Subtle animation for the container */
-        .container {
-            animation: fadeIn 0.8s ease-in;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Hover effects for interactive elements - responsive */
-        .line:hover {
-            background-color: rgba(56, 139, 253, 0.1);
+        ::-webkit-scrollbar-thumb {
+            background: #444;
             border-radius: 4px;
-            padding: 2px 4px;
-            margin: 2px -4px;
-            cursor: pointer;
         }
 
-        /* Touch-friendly interactions */
-        @media (hover: none) and (pointer: coarse) {
-            .line:hover {
-                background-color: transparent;
-            }
-            
-            .line:active {
-                background-color: rgba(56, 139, 253, 0.15);
-                border-radius: 4px;
-                padding: 2px 4px;
-                margin: 2px -4px;
-            }
-            
-            .url:hover {
-                color: #a5d6ff;
-                border-bottom-color: #a5d6ff;
-            }
-            
-            .url:active {
-                color: #58a6ff;
-                border-bottom-color: #58a6ff;
-            }
-        }
-
-        /* Improved scrolling on mobile */
-        body {
-            -webkit-overflow-scrolling: touch;
-            scroll-behavior: smooth;
-        }
-
-        /* Better focus states for accessibility */
-        .url:focus {
-            outline: 2px solid #58a6ff;
-            outline-offset: 2px;
-            border-radius: 2px;
-        }
-
-        /* Ensure text remains selectable on mobile */
-        .container {
-            -webkit-user-select: text;
-            -moz-user-select: text;
-            -ms-user-select: text;
-            user-select: text;
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="file-header">
-            <span class="comment"># Personal configuration file</span><br>
-            <span class="comment"># Last updated: 2025-06-04</span>
+    <div class="terminal-container">
+        <div class="terminal-header">
+            <div class="terminal-buttons">
+                <div class="btn close"></div>
+                <div class="btn minimize"></div>
+                <div class="btn maximize"></div>
+            </div>
+            <div class="terminal-title">tarun@systems-architect:~$ ./display_profile.sh</div>
         </div>
-
-        <div class="section">
-            <div class="line">
-                <span class="section-header">[profile]</span>
-            </div>
-            <div class="line">
-                <span class="key">name</span><span class="equals">=</span><span class="string">"Your Name"</span>
-            </div>
-            <div class="line">
-                <span class="key">title</span><span class="equals">=</span><span class="string">"Full Stack Developer"</span>
-            </div>
-            <div class="line">
-                <span class="key">description</span><span class="equals">=</span><span class="string">"Code enthusiast | Problem solver | Coffee addict"</span>
-            </div>
-            <div class="line">
-                <span class="key">location</span><span class="equals">=</span><span class="string">"San Francisco, CA"</span>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="line">
-                <span class="section-header">[contact]</span>
-            </div>
-            <div class="line">
-                <span class="key">email</span><span class="equals">=</span><span class="string">"hello@yourname.com"</span>
-            </div>
-            <div class="line">
-                <span class="key">website</span><span class="equals">=</span><a href="#" class="url">"https://yourname.dev"</a>
-            </div>
-            <div class="line">
-                <span class="key">github</span><span class="equals">=</span><a href="https://github.com/yourusername" class="url">"https://github.com/yourusername"</a>
-            </div>
-            <div class="line">
-                <span class="key">linkedin</span><span class="equals">=</span><a href="https://linkedin.com/in/yourname" class="url">"https://linkedin.com/in/yourname"</a>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="line">
-                <span class="section-header">[projects]</span>
-            </div>
-            
-            <div class="line">
-                <span class="comment"># Real-time collaborative task management platform</span>
-            </div>
-            <div class="line nested">
-                <span class="section-header">[projects.taskflow]</span>
-            </div>
-            <div class="line nested">
-                <span class="key">description</span><span class="equals">=</span><span class="string">"Full-stack React/Node.js app with real-time collaboration"</span>
-            </div>
-            <div class="line nested">
-                <span class="key">tech_stack</span><span class="equals">=</span><span class="array">["React", "Node.js", "Socket.io", "PostgreSQL", "Redis"]</span>
-            </div>
-            <div class="line nested">
-                <span class="key">features</span><span class="equals">=</span><span class="array">["Real-time updates", "Team collaboration", "File attachments", "Time tracking"]</span>
-            </div>
-            <div class="line nested">
-                <span class="key">demo</span><span class="equals">=</span><a href="https://taskflow-demo.vercel.app" class="url">"https://taskflow-demo.vercel.app"</a>
-            </div>
-            <div class="line nested">
-                <span class="key">github</span><span class="equals">=</span><a href="https://github.com/yourusername/taskflow" class="url">"https://github.com/yourusername/taskflow"</a>
-            </div>
-            <div class="line nested">
-                <span class="key">docs</span><span class="equals">=</span><a href="https://taskflow-docs.netlify.app" class="url">"https://taskflow-docs.netlify.app"</a>
+        
+        <div class="terminal-content">
+            <div class="output">
+                <span class="prompt">$</span> <span class="command">whoami</span><br>
+                <span class="highlight">Tarun Thakur</span> - Senior Systems Architect<br>
+                <span class="tech">Performance-obsessed engineer specializing in sub-millisecond systems</span>
             </div>
 
-            <div class="line">
-                <span class="comment"># Open-source API development toolkit</span>
-            </div>
-            <div class="line nested">
-                <span class="section-header">[projects.api_devkit]</span>
-            </div>
-            <div class="line nested">
-                <span class="key">description</span><span class="equals">=</span><span class="string">"CLI tool for rapid API development and testing"</span>
-            </div>
-            <div class="line nested">
-                <span class="key">tech_stack</span><span class="equals">=</span><span class="array">["Go", "Cobra CLI", "OpenAPI", "Docker"]</span>
-            </div>
-            <div class="line nested">
-                <span class="key">features</span><span class="equals">=</span><span class="array">["Auto-generated docs", "Mock servers", "API testing", "Schema validation"]</span>
-            </div>
-            <div class="line nested">
-                <span class="key">downloads</span><span class="equals">=</span><span class="value">15000+</span>
-            </div>
-            <div class="line nested">
-                <span class="key">github</span><span class="equals">=</span><a href="https://github.com/yourusername/api-devkit" class="url">"https://github.com/yourusername/api-devkit"</a>
-            </div>
-            <div class="line nested">
-                <span class="key">docs</span><span class="equals">=</span><a href="https://api-devkit.dev/docs" class="url">"https://api-devkit.dev/docs"</a>
+            <div class="output">
+                <span class="prompt">$</span> <span class="command">cat contact.info</span><br>
+                LinkedIn: <a href="https://www.linkedin.com/in/tarun-thakur-6316a6206" class="link">linkedin.com/in/tarun-thakur-6316a6206</a><br>
+                GitHub: <a href="https://github.com/bihari123" class="link">github.com/bihari123</a><br>
+                Location: <span class="tech">Global (Remote)</span>
             </div>
 
-            <div class="line">
-                <span class="comment"># Machine learning model deployment platform</span>
-            </div>
-            <div class="line nested">
-                <span class="section-header">[projects.mlflow_deploy]</span>
-            </div>
-            <div class="line nested">
-                <span class="key">description</span><span class="equals">=</span><span class="string">"Kubernetes-native ML model serving with auto-scaling"</span>
-            </div>
-            <div class="line nested">
-                <span class="key">tech_stack</span><span class="equals">=</span><span class="array">["Python", "FastAPI", "Kubernetes", "MLflow", "Prometheus"]</span>
-            </div>
-            <div class="line nested">
-                <span class="key">features</span><span class="equals">=</span><span class="array">["One-click deployment", "A/B testing", "Model monitoring", "Auto-scaling"]</span>
-            </div>
-            <div class="line nested">
-                <span class="key">github</span><span class="equals">=</span><a href="https://github.com/yourusername/mlflow-deploy" class="url">"https://github.com/yourusername/mlflow-deploy"</a>
-            </div>
-            <div class="line nested">
-                <span class="key">docs</span><span class="equals">=</span><a href="https://mlflow-deploy.readthedocs.io" class="url">"https://mlflow-deploy.readthedocs.io"</a>
-            </div>
-
-            <div class="line">
-                <span class="comment"># Personal portfolio with blog</span>
-            </div>
-            <div class="line nested">
-                <span class="section-header">[projects.portfolio]</span>
-            </div>
-            <div class="line nested">
-                <span class="key">description</span><span class="equals">=</span><span class="string">"Static site with integrated blog and project showcase"</span>
-            </div>
-            <div class="line nested">
-                <span class="key">tech_stack</span><span class="equals">=</span><span class="array">["Next.js", "MDX", "Tailwind CSS", "Vercel"]</span>
-            </div>
-            <div class="line nested">
-                <span class="key">features</span><span class="equals">=</span><span class="array">["Blog with MDX", "Dark/light theme", "SEO optimized", "Analytics dashboard"]</span>
-            </div>
-            <div class="line nested">
-                <span class="key">live_site</span><span class="equals">=</span><a href="https://yourname.dev" class="url">"https://yourname.dev"</a>
-            </div>
-            <div class="line nested">
-                <span class="key">github</span><span class="equals">=</span><a href="https://github.com/yourusername/portfolio" class="url">"https://github.com/yourusername/portfolio"</a>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="line">
-                <span class="section-header">[skills]</span>
-            </div>
-            <div class="line">
-                <span class="key">languages</span><span class="equals">=</span><span class="array">["Python", "JavaScript", "TypeScript", "Go", "Rust", "Java"]</span>
-            </div>
-            <div class="line">
-                <span class="key">frontend</span><span class="equals">=</span><span class="array">["React", "Vue.js", "Svelte", "Next.js", "Tailwind CSS"]</span>
-            </div>
-            <div class="line">
-                <span class="key">backend</span><span class="equals">=</span><span class="array">["Node.js", "Django", "FastAPI", "Express", "PostgreSQL", "MongoDB"]</span>
-            </div>
-            <div class="line">
-                <span class="key">devops</span><span class="equals">=</span><span class="array">["Docker", "Kubernetes", "CI/CD", "Terraform", "GitHub Actions"]</span>
-            </div>
-            <div class="line">
-                <span class="key">cloud</span><span class="equals">=</span><span class="array">["AWS", "GCP", "Azure", "Vercel", "Netlify"]</span>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="line">
-                <span class="section-header">[experience]</span>
-            </div>
-            
-            <div class="line">
-                <span class="comment"># Senior Full Stack Developer at Tech Corp</span>
-            </div>
-            <div class="line nested">
-                <span class="section-header">[experience.tech_corp]</span>
-            </div>
-            <div class="line nested">
-                <span class="key">role</span><span class="equals">=</span><span class="string">"Senior Full Stack Developer"</span>
-            </div>
-            <div class="line nested">
-                <span class="key">company</span><span class="equals">=</span><span class="string">"Tech Corp"</span>
-            </div>
-            <div class="line nested">
-                <span class="key">duration</span><span class="equals">=</span><span class="duration">"Jan 2022 – Present"</span>
-            </div>
-            <div class="line nested">
-                <span class="key">location</span><span class="equals">=</span><span class="string">"San Francisco, CA (Remote)"</span>
-            </div>
-            <div class="line nested">
-                <span class="key">achievements</span><span class="equals">=</span><span class="array">[</span>
-            </div>
-            <div class="line nested" style="padding-left: 40px;">
-                <span class="string">"Led migration of monolithic app to microservices, reducing deployment time by 75%",</span>
-            </div>
-            <div class="line nested" style="padding-left: 40px;">
-                <span class="string">"Architected real-time notification system serving 100k+ daily active users",</span>
-            </div>
-            <div class="line nested" style="padding-left: 40px;">
-                <span class="string">"Mentored 5 junior developers and established code review best practices",</span>
-            </div>
-            <div class="line nested" style="padding-left: 40px;">
-                <span class="string">"Implemented CI/CD pipeline reducing bug reports by 60% and release cycle to 2 weeks"</span>
-            </div>
-            <div class="line nested">
-                <span class="array">]</span>
-            </div>
-            <div class="line nested">
-                <span class="key">tech_stack</span><span class="equals">=</span><span class="array">["React", "Node.js", "TypeScript", "AWS", "Docker", "Kubernetes"]</span>
+            <div class="section-title">Performance Metrics & Technical Impact</div>
+            <div class="performance-metrics">
+                <div class="metric-card">
+                    <span class="metric-value">3x</span>
+                    <div class="metric-label">Graph DB Performance vs Neo4j</div>
+                    <div style="font-size: 10px; color: #888; margin-top: 5px;">Custom RDF engine - Patent pending</div>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value">3s</span>
+                    <div class="metric-label">Glass-to-glass Streaming Latency</div>
+                    <div style="font-size: 10px; color: #888; margin-top: 5px;">Industry standard: 8-15s</div>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value">50K</span>
+                    <div class="metric-label">RPS on Single Core (Rust)</div>
+                    <div style="font-size: 10px; color: #888; margin-top: 5px;">nginx: ~10K, Apache: ~5K</div>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value">&lt;200ms</span>
+                    <div class="metric-label">AI Voice-to-Response Latency</div>
+                    <div style="font-size: 10px; color: #888; margin-top: 5px;">Whisper + LlamaCPP pipeline</div>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value">&lt;10MB</span>
+                    <div class="metric-label">IoT System Monitor Memory</div>
+                    <div style="font-size: 10px; color: #888; margin-top: 5px;">Full HTTPS server + monitoring</div>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value">85%</span>
+                    <div class="metric-label">GC Pressure Reduction</div>
+                    <div style="font-size: 10px; color: #888; margin-top: 5px;">Custom memory allocation</div>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value">4x</span>
+                    <div class="metric-label">SIMD Frame Processing Speedup</div>
+                    <div style="font-size: 10px; color: #888; margin-top: 5px;">1080p→4K real-time upscaling</div>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value">O(1)</span>
+                    <div class="metric-label">Space Complexity (from O(n))</div>
+                    <div style="font-size: 10px; color: #888; margin-top: 5px;">Hilbert curve optimization</div>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value">99.9%</span>
+                    <div class="metric-label">UDP Packet Delivery Rate</div>
+                    <div style="font-size: 10px; color: #888; margin-top: 5px;">Under 10Gbps load testing</div>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value">&lt;100μs</span>
+                    <div class="metric-label">Coordination Service Failover</div>
+                    <div style="font-size: 10px; color: #888; margin-top: 5px;">etcd-based consensus protocol</div>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value">25%</span>
+                    <div class="metric-label">Protocol Handshake Improvement</div>
+                    <div style="font-size: 10px; color: #888; margin-top: 5px;">Moonlight: 12s→9s optimization</div>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value">10x</span>
+                    <div class="metric-label">Binary Protocol Compression</div>
+                    <div style="font-size: 10px; color: #888; margin-top: 5px;">vs JSON for IoT telemetry</div>
+                </div>
             </div>
 
-            <div class="line">
-                <span class="comment"># Full Stack Developer at StartupXYZ</span>
-            </div>
-            <div class="line nested">
-                <span class="section-header">[experience.startupxyz]</span>
-            </div>
-            <div class="line nested">
-                <span class="key">role</span><span class="equals">=</span><span class="string">"Full Stack Developer"</span>
-            </div>
-            <div class="line nested">
-                <span class="key">company</span><span class="equals">=</span><span class="string">"StartupXYZ"</span>
-            </div>
-            <div class="line nested">
-                <span class="key">duration</span><span class="equals">=</span><span class="duration">"Jun 2020 – Dec 2021"</span>
-            </div>
-            <div class="line nested">
-                <span class="key">location</span><span class="equals">=</span><span class="string">"Austin, TX"</span>
-            </div>
-            <div class="line nested">
-                <span class="key">achievements</span><span class="equals">=</span><span class="array">[</span>
-            </div>
-            <div class="line nested" style="padding-left: 40px;">
-                <span class="string">"Built MVP from scratch using React/Django, acquired first 1000 users in 3 months",</span>
-            </div>
-            <div class="line nested" style="padding-left: 40px;">
-                <span class="string">"Developed payment integration with Stripe, processing $100k+ monthly revenue",</span>
-            </div>
-            <div class="line nested" style="padding-left: 40px;">
-                <span class="string">"Optimized database queries reducing API response time from 2s to 200ms",</span>
-            </div>
-            <div class="line nested" style="padding-left: 40px;">
-                <span class="string">"Implemented user analytics dashboard helping increase user retention by 40%"</span>
-            </div>
-            <div class="line nested">
-                <span class="array">]</span>
-            </div>
-            <div class="line nested">
-                <span class="key">tech_stack</span><span class="equals">=</span><span class="array">["React", "Django", "PostgreSQL", "Redis", "Celery", "AWS"]</span>
+            <div class="section-title">Core Expertise</div>
+            <div class="skills-list">
+                <div class="skill-category">
+                    <div class="skill-category-title">Systems Programming</div>
+                    <span class="tech">Rust, C, C++, Zig, Assembly (x86_64, ARM), SIMD optimization</span>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-category-title">Performance Engineering</div>
+                    <span class="tech">Lock-free algorithms, Zero-copy I/O, Memory pool allocation, Branch prediction optimization</span>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-category-title">Kernel Technologies</div>
+                    <span class="tech">eBPF/XDP, Linux Security Modules, Custom syscalls, io_uring, Kernel modules</span>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-category-title">Distributed Systems</div>
+                    <span class="tech">Golang, etcd/Raft consensus, Custom protocols, gRPC, Microservices</span>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-category-title">Infrastructure</div>
+                    <span class="tech">Kubernetes internals, Docker runtime, Envoy/WASM, Service mesh, AWS</span>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-category-title">Databases & Storage</div>
+                    <span class="tech">Custom storage engines, PostgreSQL internals, Graph databases, OpenSearch</span>
+                </div>
             </div>
 
-            <div class="line">
-                <span class="comment"># Junior Developer at WebAgency</span>
-            </div>
-            <div class="line nested">
-                <span class="section-header">[experience.webagency]</span>
-            </div>
-            <div class="line nested">
-                <span class="key">role</span><span class="equals">=</span><span class="string">"Junior Web Developer"</span>
-            </div>
-            <div class="line nested">
-                <span class="key">company</span><span class="equals">=</span><span class="string">"WebAgency"</span>
-            </div>
-            <div class="line nested">
-                <span class="key">duration</span><span class="equals">=</span><span class="duration">"Sep 2019 – May 2020"</span>
-            </div>
-            <div class="line nested">
-                <span class="key">location</span><span class="equals">=</span><span class="string">"Portland, OR"</span>
-            </div>
-            <div class="line nested">
-                <span class="key">achievements</span><span class="equals">=</span><span class="array">[</span>
-            </div>
-            <div class="line nested" style="padding-left: 40px;">
-                <span class="string">"Developed 15+ responsive websites for small business clients",</span>
-            </div>
-            <div class="line nested" style="padding-left: 40px;">
-                <span class="string">"Improved website loading speeds by 50% through image optimization and caching",</span>
-            </div>
-            <div class="line nested" style="padding-left: 40px;">
-                <span class="string">"Collaborated with design team to implement pixel-perfect UI components",</span>
-            </div>
-            <div class="line nested" style="padding-left: 40px;">
-                <span class="string">"Maintained and updated legacy WordPress sites for 20+ clients"</span>
-            </div>
-            <div class="line nested">
-                <span class="array">]</span>
-            </div>
-            <div class="line nested">
-                <span class="key">tech_stack</span><span class="equals">=</span><span class="array">["HTML/CSS", "JavaScript", "WordPress", "PHP", "jQuery"]</span>
-            </div>
-        </div>
+            <div class="section-title">Professional Experience</div>
 
-        <div class="section">
-            <div class="line">
-                <span class="section-header">[education]</span>
+            <div class="job-header">
+                <div class="job-title">Software Engineer SDE2</div>
+                <div class="company">Straughton Street Tech Labs</div>
+                <div class="duration">December 2024 – Present</div>
             </div>
-            <div class="line">
-                <span class="key">degree</span><span class="equals">=</span><span class="string">"B.S. Computer Science"</span>
+            <div class="output">
+                <strong>Impact:</strong> Leading development of <span class="highlight">real-time video streaming infrastructure</span> processing <span class="metric">10K+ concurrent streams</span><br><br>
+                
+                <div class="achievement">Architected <span class="highlight">low-latency HLS transcoder</span> achieving <span class="metric">3-second glass-to-glass latency</span> - industry-leading performance for live streaming applications</div>
+                
+                <div class="achievement">Built custom <span class="tech">FFmpeg integration</span> with <span class="highlight">zero-copy memory management</span> and <span class="metric">SIMD-accelerated processing</span> resulting in 4x performance improvement</div>
+                
+                <div class="achievement">Implemented <span class="highlight">frame upscaler using assembly and SIMD instructions</span> enabling real-time 1080p→4K streaming with frame interpolation and blending techniques</div>
+                
+                <div class="achievement">Designed <span class="highlight">lock-free RTMP ingestion server</span> in C with <span class="metric">microsecond-level jitter control</span> and custom memory pool allocation</div>
+                
+                <div class="achievement">Created <span class="highlight">inotify-based event bus</span> with file monitoring for <span class="metric">sub-100ms segment loading</span> into distributed cache system</div>
+                
+                <div class="achievement">Architected <span class="highlight">distributed coordination service</span> using <span class="tech">etcd consensus protocol</span> ensuring <span class="metric">99.99% uptime</span> with automatic failover recovery</div>
+                
+                <br><strong>Technologies:</strong> 
+                <div class="tech-stack">
+                    <span class="tech-tag">C</span>
+                    <span class="tech-tag">Golang</span>
+                    <span class="tech-tag">FFmpeg</span>
+                    <span class="tech-tag">SIMD</span>
+                    <span class="tech-tag">Assembly</span>
+                    <span class="tech-tag">RTMP/HLS</span>
+                    <span class="tech-tag">etcd</span>
+                    <span class="tech-tag">inotify</span>
+                </div>
             </div>
-            <div class="line">
-                <span class="key">university</span><span class="equals">=</span><span class="string">"University of Technology"</span>
-            </div>
-            <div class="line">
-                <span class="key">year</span><span class="equals">=</span><span class="value">2019</span>
-            </div>
-        </div>
 
-        <div class="section">
-            <div class="line">
-                <span class="section-header">[config]</span>
+            <div class="job-header">
+                <div class="job-title">Founding Engineer</div>
+                <div class="company">Shaga Labs Inc</div>
+                <div class="duration">February 2024 – September 2024</div>
             </div>
-            <div class="line">
-                <span class="key">editor</span><span class="equals">=</span><span class="array">["VSCode", "Neovim"]</span>
+            <div class="output">
+                <strong>Impact:</strong> Built <span class="highlight">game streaming platform</span> with <span class="metric">AI-powered NPCs</span> and real-time threat detection<br><br>
+                
+                <div class="achievement">Optimized <span class="highlight">Moonlight Streaming protocol</span> in C++/Rust reducing connection establishment from <span class="metric">12s → 9s (25% improvement)</span></div>
+                
+                <div class="achievement">Implemented <span class="highlight">Hilbert curve spatial indexing algorithm</span> for node selection achieving <span class="metric">O(n) → O(1) space complexity</span> optimization</div>
+                
+                <div class="achievement">Built <span class="highlight">real-time AI inference pipeline</span> with <span class="tech">Whisper + LlamaCPP</span> achieving <span class="metric">sub-200ms voice-to-response latency</span></div>
+                
+                <div class="achievement">Created <span class="highlight">lock-free ring buffer system</span> for <span class="metric">zero-allocation frame capture</span> during gameplay with custom memory management</div>
+                
+                <div class="achievement">Developed <span class="highlight">UDP-based voice streaming service</span> with packet loss recovery and <span class="metric">99.9% delivery guarantee</span> under high network load</div>
+                
+                <div class="achievement">Implemented <span class="highlight">Windows kernel-level threat detection</span> using registry monitoring and file activity analysis with real-time anomaly detection</div>
+                
+                <br><strong>Technologies:</strong>
+                <div class="tech-stack">
+                    <span class="tech-tag">C++</span>
+                    <span class="tech-tag">Rust</span>
+                    <span class="tech-tag">Golang</span>
+                    <span class="tech-tag">Whisper</span>
+                    <span class="tech-tag">LlamaCPP</span>
+                    <span class="tech-tag">UDP</span>
+                    <span class="tech-tag">Lock-free programming</span>
+                </div>
             </div>
-            <div class="line">
-                <span class="key">os</span><span class="equals">=</span><span class="string">"macOS Sonoma"</span>
-            </div>
-            <div class="line">
-                <span class="key">terminal</span><span class="equals">=</span><span class="string">"iTerm2"</span>
-            </div>
-            <div class="line">
-                <span class="key">shell</span><span class="equals">=</span><span class="string">"zsh"</span>
-            </div>
-            <div class="line">
-                <span class="key">theme</span><span class="equals">=</span><span class="string">"dark_mode_always"</span>
-            </div>
-        </div>
 
-        <div class="section">
-            <div class="line">
-                <span class="section-header">[preferences]</span>
+            <div class="job-header">
+                <div class="job-title">Sr. Backend Engineer</div>
+                <div class="company">VectorEdge Pvt Ltd</div>
+                <div class="duration">February 2022 – February 2024</div>
             </div>
-            <div class="line">
-                <span class="key">coffee</span><span class="equals">=</span><span class="boolean">true</span>
+            <div class="output">
+                <strong>Impact:</strong> <span class="highlight">3 promotions in 24 months</span> | <span class="metric">Patent application filed</span> for custom graph database architecture<br><br>
+                
+                <div class="achievement">Architected <span class="highlight">custom graph database engine</span> based on Resource Description Framework achieving <span class="metric">3x performance improvement over Neo4j</span> (US Patent Application filed)</div>
+                
+                <div class="achievement">Implemented <span class="highlight">eBPF kernel modules</span> using <span class="tech">libbpf</span> for zero-overhead file system monitoring with Linux Security Module integration</div>
+                
+                <div class="achievement">Built <span class="highlight">custom L7 HTTP proxy</span> with <span class="tech">Envoy</span> achieving <span class="metric">40% latency reduction</span> compared to nginx for service-oriented architecture</div>
+                
+                <div class="achievement">Designed <span class="highlight">multi-cloud data pipeline</span> processing <span class="metric">1TB+/day</span> with connectors for AWS RDS, S3, Snowflake ensuring CSPM compliance</div>
+                
+                <div class="achievement">Created <span class="highlight">high-performance HTTPS server in Rust</span> with <span class="metric">&lt;10MB memory footprint, 50K RPS</span> sustained throughput on single core</div>
+                
+                <div class="achievement">Developed <span class="highlight">analytics and monitoring tools</span> with custom metrics collection and real-time alerting for cloud infrastructure</div>
+                
+                <br><strong>Technologies:</strong>
+                <div class="tech-stack">
+                    <span class="tech-tag">Golang</span>
+                    <span class="tech-tag">C</span>
+                    <span class="tech-tag">Rust</span>
+                    <span class="tech-tag">eBPF</span>
+                    <span class="tech-tag">libbpf</span>
+                    <span class="tech-tag">Envoy</span>
+                    <span class="tech-tag">AWS</span>
+                    <span class="tech-tag">Kubernetes</span>
+                    <span class="tech-tag">LSM</span>
+                </div>
             </div>
-            <div class="line">
-                <span class="key">tabs_vs_spaces</span><span class="equals">=</span><span class="string">"spaces"</span>
-            </div>
-            <div class="line">
-                <span class="key">vim_keybindings</span><span class="equals">=</span><span class="boolean">true</span>
-            </div>
-            <div class="line">
-                <span class="key">favorite_language</span><span class="equals">=</span><span class="string">"It depends on the problem"</span>
-            </div>
-        </div>
 
-        <div class="section">
-            <div class="line">
-                <span class="section-header">[hobbies]</span>
+            <div class="job-header">
+                <div class="job-title">Backend Engineer</div>
+                <div class="company">Obliques Labs Pvt Ltd</div>
+                <div class="duration">October 2020 – February 2022</div>
             </div>
-            <div class="line">
-                <span class="key">interests</span><span class="equals">=</span><span class="array">["Open Source", "Machine Learning", "Photography", "Hiking", "Gaming"]</span>
+            <div class="output">
+                <strong>Impact:</strong> Built <span class="highlight">next-generation containerization platform</span> and high-performance API frameworks<br><br>
+                
+                <div class="achievement">Developed <span class="highlight">cloud orchestration tool</span> in C/Golang with <span class="metric">kernel-level dependency analysis</span> providing Docker-alternative containerization</div>
+                
+                <div class="achievement">Created <span class="highlight">lightweight Golang API framework</span> achieving <span class="metric">2x performance improvement</span> over Gin/Echo for internal microservices</div>
+                
+                <div class="achievement">Architected <span class="highlight">microservices platform</span> serving <span class="metric">1M+ requests/day</span> with custom load balancing and service discovery</div>
+                
+                <div class="achievement">Implemented <span class="highlight">custom ORM with query optimization</span> and intelligent connection pooling reducing database load by 60%</div>
+                
+                <br><strong>Technologies:</strong>
+                <div class="tech-stack">
+                    <span class="tech-tag">C</span>
+                    <span class="tech-tag">Golang</span>
+                    <span class="tech-tag">Docker</span>
+                    <span class="tech-tag">Beego</span>
+                    <span class="tech-tag">Gin</span>
+                    <span class="tech-tag">Microservices</span>
+                </div>
             </div>
-            <div class="line">
-                <span class="key">currently_reading</span><span class="equals">=</span><span class="string">"Clean Architecture by Robert Martin"</span>
-            </div>
-            <div class="line">
-                <span class="key">current_project</span><span class="equals">=</span><span class="string">"Building a personal AI assistant"</span>
-            </div>
-        </div>
 
-        <div class="section">
-            <div class="line">
-                <span class="comment"># Want to collaborate? Drop me a message!</span>
+            <div class="section-title">Open Source Impact</div>
+
+            <div class="project-card">
+                <div class="project-title">Naarad - Zero-Overhead File Monitoring</div>
+                <div class="project-description">
+                    Advanced file monitoring system using <span class="highlight">eBPF JIT compilation</span> for <span class="metric">nanosecond-precision</span> syscall interception
+                </div>
+                <div class="achievement">Monitors <span class="metric">100K+ files with &lt;0.1% CPU overhead</span> using custom LSM hooks</div>
+                <div class="achievement">Real-time syscall manipulation with <span class="highlight">machine learning anomaly detection</span> (99.7% accuracy)</div>
+                <div class="achievement">Lock-free ring buffer implementation for <span class="metric">high-throughput event processing</span></div>
+                <div class="tech-stack">
+                    <span class="tech-tag">C</span>
+                    <span class="tech-tag">eBPF</span>
+                    <span class="tech-tag">libbpf</span>
+                    <span class="tech-tag">LSM</span>
+                </div>
+                <div style="margin-top: 15px;">
+                    <strong>Links:</strong><br>
+                    📂 <a href="https://github.com/bihari123/naarad" class="link">Source Code</a><br>
+                    🎥 <a href="#" class="link" style="color: #ffd93d;">Video Demo</a> <span style="color: #888; font-size: 12px;"></span>
+                </div>
             </div>
-            <div class="line">
-                <span class="comment"># Available for: full-time, consulting, open source contributions</span>
+
+            <div class="project-card">
+                <div class="project-title">Beirbal - Enterprise NLP Platform</div>
+                <div class="project-description">
+                    Cost-effective alternative to <span class="highlight">Prodigy annotation tool</span> built with Golang for enterprise NLP model training
+                </div>
+                <div class="achievement">Saves companies <span class="metric">$50K+ annually</span> on annotation tooling costs</div>
+                <div class="achievement">Integrated format compatible with <span class="highlight">SpaCy ecosystem</span> and major NLP frameworks</div>
+                <div class="tech-stack">
+                    <span class="tech-tag">Golang</span>
+                    <span class="tech-tag">NLP</span>
+                    <span class="tech-tag">Machine Learning</span>
+                </div>
+                <div style="margin-top: 15px;">
+                    <strong>Links:</strong><br>
+                    📂 <a href="https://github.com/bihari123/beirbal" class="link">Source Code</a><br>
+                    🎥 <a href="#" class="link" style="color: #ffd93d;">Video Demo</a> <span style="color: #888; font-size: 12px;"></span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-title">RustyAgent - Ultra-Lightweight IoT Monitor</div>
+                <div class="project-description">
+                    Production-grade system monitoring for <span class="highlight">resource-constrained IoT devices</span> with enterprise security features
+                </div>
+                <div class="achievement"><span class="metric">50,000 RPS sustained throughput</span> on single ARM core with &lt;10MB memory usage</div>
+                <div class="achievement">Custom async runtime built on <span class="highlight">io_uring</span> for zero-copy I/O operations</div>
+                <div class="achievement">Hardware-accelerated AES encryption with <span class="highlight">cryptographic attestation</span></div>
+                <div class="achievement">Production deployment across <span class="metric">10K+ IoT devices</span> in smart city infrastructure</div>
+                <div class="achievement">Custom binary protocol achieving <span class="metric">10x compression ratio</span> vs JSON</div>
+                <div class="tech-stack">
+                    <span class="tech-tag">Rust</span>
+                    <span class="tech-tag">Tokio</span>
+                    <span class="tech-tag">io_uring</span>
+                    <span class="tech-tag">AES</span>
+                    <span class="tech-tag">SQLite</span>
+                    <span class="tech-tag">OpenSearch</span>
+                </div>
+                <div style="margin-top: 15px;">
+                    <strong>Links:</strong><br>
+                    📂 <a href="https://github.com/bihari123/rusty_agent" class="link">Source Code</a><br>
+                    🎥 <a href="#" class="link" style="color: #ffd93d;">Video Demo</a> <span style="color: #888; font-size: 12px;"></span>
+                </div>
+            </div>
+
+            <div class="section-title">Education & Research</div>
+            <div class="output">
+                <span class="prompt">$</span> <span class="command">cat education.log</span><br><br>
+                
+                <strong><span class="highlight">University of London</span> (LSE Academic Direction)</strong><br>
+                B.Sc. Mathematics and Economics | Expected: <span class="duration">November 2027</span><br>
+                Mode: <span class="tech">Remote Study</span> | <a href="https://drive.google.com/file/d/1CIsdDA5DTW3RqmCyLzC3ucVpDFUAGgC8/view?usp=sharing" class="link">Enrollment Verification</a><br><br>
+
+                <strong><span class="highlight">Academic Excellence</span></strong><br>
+                • <span class="metric">AIR 24</span> in Delhi University M.Sc. Informatics Entrance<br>
+                • <span class="metric">94%</span> in CBSE Class XII<br>
+                • Merit certificates for extraordinary academic performance<br><br>
+
+                <strong><span class="highlight">Research Publications</span></strong><br>
+                • <span class="tech">Patent Application:</span> Graph Database Architecture Innovation<br>
+                • <span class="tech">Research Paper:</span> <a href="https://drive.google.com/file/d/1sP-f26RyPjXs8lHkaRXdwEsnvMj7oMA0/view?usp=sharing" class="link">Indoor Navigation Pathfinding Algorithm</a><br>
+            </div>
+
+            <div class="section-title">Research Projects</div>
+
+            <div class="project-card">
+                <div class="project-title">Python-based CNC Machine Control System</div>
+                <div class="project-description">
+                    <strong>Supervisor:</strong> Dr. Inderpreet Singh | <span class="duration">December 2018 – March 2019</span>
+                </div>
+                <div class="achievement">Developed <span class="highlight">desktop GUI automation software</span> reducing configuration complexity from hours to minutes</div>
+                <div class="achievement">Created <span class="tech">hardware abstraction layer</span> for low-cost DIY CNC machines targeting maker market</div>
+                <div class="achievement">Implemented <span class="highlight">real-time toolpath optimization</span> with collision detection algorithms</div>
+                <div class="achievement">Designed <span class="tech">user-friendly interface</span> comparable to MS Paint simplicity for PCB design workflow</div>
+                <div style="margin-top: 15px;">
+                    <strong>Links:</strong><br>
+                    📄 <a href="https://docs.google.com/document/d/1cKZomAtrkS6toOHmG31w_a_UBjVB6trTDLMD94O04_0/edit?usp=sharing" class="link">Project Documentation</a><br>
+                    🎥 <a href="#" class="link" style="color: #ffd93d;">Video Demo</a> <span style="color: #888; font-size: 12px;"></span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-title">Indoor Navigation System for Visually Impaired</div>
+                <div class="project-description">
+                    <strong>Supervisors:</strong> Dr. Inderpreet Singh, Dr. Navjot Kaur | <span class="duration">May 2017 – December 2017</span>
+                </div>
+                <div class="achievement">Built <span class="highlight">Android application</span> with voice-controlled navigation using Bluetooth beacons</div>
+                <div class="achievement">Implemented <span class="tech">shortest path algorithm</span> with real-time position triangulation</div>
+                <div class="achievement">Integrated <span class="highlight">text-to-speech engine</span> with natural language direction processing</div>
+                <div class="achievement">Deployed across <span class="metric">university campus</span> with 95% navigation accuracy</div>
+                <div class="tech-stack">
+                    <span class="tech-tag">Android</span>
+                    <span class="tech-tag">Java</span>
+                    <span class="tech-tag">Bluetooth</span>
+                    <span class="tech-tag">Text-to-Speech</span>
+                    <span class="tech-tag">Graph Algorithms</span>
+                </div>
+                <div style="margin-top: 15px;">
+                    <strong>Links:</strong><br>
+                    📄 <a href="https://drive.google.com/file/d/1sP-f26RyPjXs8lHkaRXdwEsnvMj7oMA0/view?usp=sharing" class="link">Research Paper</a><br>
+                    🎥 <a href="#" class="link" style="color: #ffd93d;">Video Demo</a> <span style="color: #888; font-size: 12px;"></span>
+                </div>
+            </div>
+
+            <div class="section-title">Technical Leadership & Impact</div>
+            <div class="output">
+                <span class="prompt">$</span> <span class="command">./calculate_impact.sh</span><br><br>
+                
+                <strong><span class="highlight">Innovation & Patents</span></strong><br>
+                • US Patent Application: <span class="tech">Graph Database Architecture</span><br>
+                • Performance improvements: <span class="metric">3x faster than industry standards</span><br>
+                • Memory optimization: <span class="metric">85% reduction in resource usage</span><br><br>
+                
+                <strong><span class="highlight">Career Velocity</span></strong><br>
+                • <span class="metric">3 promotions in 24 months</span> at VectorEdge<br>
+                • Technical leadership across <span class="metric">4 companies</span><br>
+                • Mentored <span class="metric">15+ engineers</span> in systems programming<br><br>
+                
+            <div class="section-title">System Scale & Business Impact</div>
+            <div class="output">
+                <span class="prompt">$</span> <span class="command">./analyze_production_metrics.sh</span><br><br>
+                
+                <strong><span class="highlight">Real-Time Streaming Infrastructure</span></strong><br>
+                • <span class="metric">10,000+ concurrent video streams</span> processed simultaneously<br>
+                • <span class="metric">3-second end-to-end latency</span> (industry standard: 8-15 seconds)<br>
+                • <span class="metric">4K real-time upscaling</span> from 1080p source using SIMD optimization<br>
+                • <span class="metric">Zero packet loss</span> during peak traffic (99.99% delivery guarantee)<br><br>
+                
+                <strong><span class="highlight">Database Performance Innovation</span></strong><br>
+                • Custom graph engine: <span class="metric">3x faster query execution</span> than Neo4j<br>
+                • <span class="metric">RDF-based architecture</span> with patent-pending optimizations<br>
+                • <span class="metric">Sub-millisecond graph traversal</span> for knowledge graphs<br>
+                • <span class="metric">Linear scalability</span> up to 100M+ nodes tested<br><br>
+                
+                <strong><span class="highlight">High-Performance Computing</span></strong><br>
+                • Rust HTTP server: <span class="metric">50,000 RPS sustained</span> (5x faster than nginx)<br>
+                • Memory efficiency: <span class="metric">&lt;10MB total footprint</span> including full monitoring stack<br>
+                • <span class="metric">Zero-copy I/O</span> with io_uring achieving 40% CPU reduction<br>
+                • <span class="metric">Lock-free algorithms</span> eliminating contention in multi-threaded workloads<br><br>
+                
+                <strong><span class="highlight">IoT & Edge Computing</span></strong><br>
+                • Production deployment: <span class="metric">10,000+ IoT devices</span> in smart city infrastructure<br>
+                • <span class="metric">Microsecond-precision monitoring</span> with <0.1% CPU overhead<br>
+                • <span class="metric">Hardware-accelerated encryption</span> for secure telemetry<br>
+                • <span class="metric">Edge processing</span> reducing cloud bandwidth by 80%<br><br>
+                
+                <strong><span class="highlight">AI & Machine Learning</span></strong><br>
+                • Voice AI pipeline: <span class="metric">&lt;200ms voice-to-response</span> (industry: 1-3 seconds)<br>
+                • <span class="metric">Real-time inference</span> with Whisper + LlamaCPP optimization<br>
+                • <span class="metric">Anomaly detection</span> with 99.7% accuracy for security monitoring<br>
+                • <span class="metric">Custom neural network</span> optimizations for embedded deployment<br><br>
+                
+                <strong><span class="highlight">Cost & Efficiency Impact</span></strong><br>
+                • Open source NLP tools: <span class="metric">$50,000+ annual savings</span> per enterprise user<br>
+                • Memory optimization: <span class="metric">85% reduction in GC pressure</span><br>
+                • <span class="metric">40% infrastructure cost reduction</span> through performance optimization<br>
+                • <span class="metric">1TB+ daily processing</span> with horizontal scaling architecture
+            </div>
+                
+                <strong><span class="highlight">Open Source Impact</span></strong><br>
+                • <span class="metric">3 major projects</span> with real-world adoption<br>
+                • Cost savings: <span class="metric">$50K+ annually</span> for enterprise users<br>
+                • Community contributions to <span class="tech">Linux kernel ecosystem</span>
+            </div>
+
+            <div class="output">
+                <span class="prompt">$</span> <span class="command">echo "Available for Staff/Principal Engineer roles"</span><br>
+                <span class="highlight">Seeking technical leadership opportunities in deep tech companies</span><br>
+                <span class="tech">Expertise: Performance engineering, Systems architecture, Real-time computing</span><br>
+                <span class="metric">Ready to drive 10x performance improvements and build next-generation systems</span><span class="typing-animation"></span>
             </div>
         </div>
     </div>
 
     <script>
-        // Enhanced responsive interactions
+        // Add interactive functionality for video demo links
         document.addEventListener('DOMContentLoaded', function() {
-            // Add click-to-copy functionality for key-value pairs
-            const lines = document.querySelectorAll('.line');
-            
-            lines.forEach(line => {
-                line.addEventListener('click', function(e) {
-                    // Prevent copying when clicking on links
-                    if (e.target.tagName === 'A') return;
-                    
-                    const text = this.textContent.trim();
-                    if (text && !text.startsWith('#') && !text.startsWith('[')) {
-                        // Check if clipboard API is available
-                        if (navigator.clipboard && navigator.clipboard.writeText) {
-                            navigator.clipboard.writeText(text).then(function() {
-                                showCopyFeedback(line);
-                            }).catch(function(err) {
-                                console.log('Could not copy text: ', err);
-                                fallbackCopyTextToClipboard(text, line);
-                            });
-                        } else {
-                            fallbackCopyTextToClipboard(text, line);
-                        }
-                    }
-                });
-            });
-
-            // Fallback copy function for older browsers
-            function fallbackCopyTextToClipboard(text, element) {
-                const textArea = document.createElement("textarea");
-                textArea.value = text;
-                
-                // Avoid scrolling to bottom
-                textArea.style.top = "0";
-                textArea.style.left = "0";
-                textArea.style.position = "fixed";
-                textArea.style.opacity = "0";
-                
-                document.body.appendChild(textArea);
-                textArea.focus();
-                textArea.select();
-                
-                try {
-                    const successful = document.execCommand('copy');
-                    if (successful) {
-                        showCopyFeedback(element);
-                    }
-                } catch (err) {
-                    console.error('Fallback: Oops, unable to copy', err);
-                }
-                
-                document.body.removeChild(textArea);
-            }
-
-            // Visual feedback function
-            function showCopyFeedback(element) {
-                const originalBg = element.style.backgroundColor;
-                element.style.backgroundColor = 'rgba(56, 139, 253, 0.3)';
-                element.style.transition = 'background-color 0.2s ease';
-                
-                setTimeout(() => {
-                    element.style.backgroundColor = originalBg;
-                    setTimeout(() => {
-                        element.style.transition = '';
-                    }, 200);
-                }, 200);
-            }
-
-            // Add keyboard navigation
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'k' && (e.ctrlKey || e.metaKey)) {
-                    e.preventDefault();
-                    // Focus first link
-                    const firstLink = document.querySelector('a');
-                    if (firstLink) firstLink.focus();
-                }
-            });
-
-            // Add touch gesture support for mobile
-            let touchStartY = 0;
-            let touchEndY = 0;
-            
-            document.addEventListener('touchstart', function(e) {
-                touchStartY = e.changedTouches[0].screenY;
-            }, { passive: true });
-            
-            document.addEventListener('touchend', function(e) {
-                touchEndY = e.changedTouches[0].screenY;
-                handleSwipe();
-            }, { passive: true });
-            
-            function handleSwipe() {
-                const swipeThreshold = 50;
-                const diff = touchStartY - touchEndY;
-                
-                if (Math.abs(diff) > swipeThreshold) {
-                    // Add subtle bounce effect for overscroll
-                    if (diff > 0 && window.scrollY === 0) {
-                        document.body.style.transform = 'translateY(-5px)';
+            // Handle video demo placeholder links
+            const videoDemoLinks = document.querySelectorAll('a[href="#"]');
+            videoDemoLinks.forEach(link => {
+                if (link.textContent.includes('Video Demo')) {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        
+                        // Create a temporary notification
+                        const notification = document.createElement('div');
+                        notification.style.cssText = `
+                            position: fixed;
+                            top: 20px;
+                            right: 20px;
+                            background: #2a2a2a;
+                            color: #ffd93d;
+                            padding: 15px 20px;
+                            border-radius: 6px;
+                            border: 1px solid #ffd93d;
+                            z-index: 1000;
+                            font-family: inherit;
+                            font-size: 14px;
+                            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+                        `;
+                        notification.textContent = 'Video demo will be available soon! 🎥';
+                        
+                        document.body.appendChild(notification);
+                        
+                        // Remove notification after 3 seconds
                         setTimeout(() => {
-                            document.body.style.transform = '';
-                        }, 150);
-                    }
+                            if (notification.parentNode) {
+                                notification.parentNode.removeChild(notification);
+                            }
+                        }, 3000);
+                    });
                 }
-            }
+            });
 
-            // Optimize for mobile viewport changes
-            function adjustForViewport() {
-                const vh = window.innerHeight * 0.01;
-                document.documentElement.style.setProperty('--vh', `${vh}px`);
-            }
-            
-            adjustForViewport();
-            window.addEventListener('resize', adjustForViewport);
-            window.addEventListener('orientationchange', function() {
-                setTimeout(adjustForViewport, 100);
+            // Add click-to-copy functionality for other links
+            const links = document.querySelectorAll('.link:not([href="#"])');
+            links.forEach(link => {
+                if (!link.href.startsWith('http')) {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        navigator.clipboard.writeText(this.textContent).then(() => {
+                            const originalText = this.textContent;
+                            this.textContent = 'Copied!';
+                            this.style.color = '#00ff88';
+                            setTimeout(() => {
+                                this.textContent = originalText;
+                                this.style.color = '#61dafb';
+                            }, 1000);
+                        });
+                    });
+                }
+            });
+
+            // Add terminal-like interaction
+            document.addEventListener('keydown', function(e) {
+                if (e.ctrlKey && e.key === 'l') {
+                    e.preventDefault();
+                    window.scrollTo(0, 0);
+                }
             });
         });
     </script>
