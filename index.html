@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Developer Profile</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'JetBrains Mono', 'Fira Code', 'Monaco', 'Consolas', monospace;
+            background-color: #0d1117;
+            color: #c9d1d9;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 24px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        .file-header {
+            color: #7d8590;
+            font-size: 14px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #21262d;
+        }
+
+        .comment {
+            color: #7d8590;
+            font-style: italic;
+        }
+
+        .section {
+            margin: 20px 0;
+        }
+
+        .section-header {
+            color: #f85149;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .key {
+            color: #79c0ff;
+            display: inline-block;
+            min-width: 120px;
+        }
+
+        .equals {
+            color: #c9d1d9;
+            margin: 0 8px;
+        }
+
+        .value {
+            color: #a5d6ff;
+        }
+
+        .string {
+            color: #a5d6ff;
+        }
+
+        .array {
+            color: #ffa657;
+        }
+
+        .bracket {
+            color: #f85149;
+        }
+
+        .line {
+            margin: 4px 0;
+            padding-left: 0;
+        }
+
+        .nested {
+            padding-left: 20px;
+        }
+
+        .duration {
+            color: #56d364;
+        }
+
+        .boolean {
+            color: #ffa657;
+        }
+
+        .url {
+            color: #a5d6ff;
+            text-decoration: none;
+            border-bottom: 1px dotted #a5d6ff;
+        }
+
+        .url:hover {
+            color: #58a6ff;
+            border-bottom-color: #58a6ff;
+        }
+
+        .inline-table {
+            color: #ffa657;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                padding: 16px;
+            }
+            
+            .key {
+                min-width: 100px;
+                font-size: 14px;
+            }
+        }
+
+        /* Subtle animation for the container */
+        .container {
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Hover effects for interactive elements */
+        .line:hover {
+            background-color: rgba(56, 139, 253, 0.1);
+            border-radius: 4px;
+            padding: 2px 4px;
+            margin: 2px -4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="file-header">
+            <span class="comment"># Personal configuration file</span><br>
+            <span class="comment"># Last updated: 2025-06-04</span>
+        </div>
+
+        <div class="section">
+            <div class="line">
+                <span class="section-header">[profile]</span>
+            </div>
+            <div class="line">
+                <span class="key">name</span><span class="equals">=</span><span class="string">"Your Name"</span>
+            </div>
+            <div class="line">
+                <span class="key">title</span><span class="equals">=</span><span class="string">"Full Stack Developer"</span>
+            </div>
+            <div class="line">
+                <span class="key">description</span><span class="equals">=</span><span class="string">"Code enthusiast | Problem solver | Coffee addict"</span>
+            </div>
+            <div class="line">
+                <span class="key">location</span><span class="equals">=</span><span class="string">"San Francisco, CA"</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="line">
+                <span class="section-header">[contact]</span>
+            </div>
+            <div class="line">
+                <span class="key">email</span><span class="equals">=</span><span class="string">"hello@yourname.com"</span>
+            </div>
+            <div class="line">
+                <span class="key">website</span><span class="equals">=</span><a href="#" class="url">"https://yourname.dev"</a>
+            </div>
+            <div class="line">
+                <span class="key">github</span><span class="equals">=</span><a href="https://github.com/yourusername" class="url">"https://github.com/yourusername"</a>
+            </div>
+            <div class="line">
+                <span class="key">linkedin</span><span class="equals">=</span><a href="https://linkedin.com/in/yourname" class="url">"https://linkedin.com/in/yourname"</a>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="line">
+                <span class="section-header">[projects]</span>
+            </div>
+            
+            <div class="line">
+                <span class="comment"># Real-time collaborative task management platform</span>
+            </div>
+            <div class="line nested">
+                <span class="section-header">[projects.taskflow]</span>
+            </div>
+            <div class="line nested">
+                <span class="key">description</span><span class="equals">=</span><span class="string">"Full-stack React/Node.js app with real-time collaboration"</span>
+            </div>
+            <div class="line nested">
+                <span class="key">tech_stack</span><span class="equals">=</span><span class="array">["React", "Node.js", "Socket.io", "PostgreSQL", "Redis"]</span>
+            </div>
+            <div class="line nested">
+                <span class="key">features</span><span class="equals">=</span><span class="array">["Real-time updates", "Team collaboration", "File attachments", "Time tracking"]</span>
+            </div>
+            <div class="line nested">
+                <span class="key">demo</span><span class="equals">=</span><a href="https://taskflow-demo.vercel.app" class="url">"https://taskflow-demo.vercel.app"</a>
+            </div>
+            <div class="line nested">
+                <span class="key">github</span><span class="equals">=</span><a href="https://github.com/yourusername/taskflow" class="url">"https://github.com/yourusername/taskflow"</a>
+            </div>
+            <div class="line nested">
+                <span class="key">docs</span><span class="equals">=</span><a href="https://taskflow-docs.netlify.app" class="url">"https://taskflow-docs.netlify.app"</a>
+            </div>
+
+            <div class="line">
+                <span class="comment"># Open-source API development toolkit</span>
+            </div>
+            <div class="line nested">
+                <span class="section-header">[projects.api_devkit]</span>
+            </div>
+            <div class="line nested">
+                <span class="key">description</span><span class="equals">=</span><span class="string">"CLI tool for rapid API development and testing"</span>
+            </div>
+            <div class="line nested">
+                <span class="key">tech_stack</span><span class="equals">=</span><span class="array">["Go", "Cobra CLI", "OpenAPI", "Docker"]</span>
+            </div>
+            <div class="line nested">
+                <span class="key">features</span><span class="equals">=</span><span class="array">["Auto-generated docs", "Mock servers", "API testing", "Schema validation"]</span>
+            </div>
+            <div class="line nested">
+                <span class="key">downloads</span><span class="equals">=</span><span class="value">15000+</span>
+            </div>
+            <div class="line nested">
+                <span class="key">github</span><span class="equals">=</span><a href="https://github.com/yourusername/api-devkit" class="url">"https://github.com/yourusername/api-devkit"</a>
+            </div>
+            <div class="line nested">
+                <span class="key">docs</span><span class="equals">=</span><a href="https://api-devkit.dev/docs" class="url">"https://api-devkit.dev/docs"</a>
+            </div>
+
+            <div class="line">
+                <span class="comment"># Machine learning model deployment platform</span>
+            </div>
+            <div class="line nested">
+                <span class="section-header">[projects.mlflow_deploy]</span>
+            </div>
+            <div class="line nested">
+                <span class="key">description</span><span class="equals">=</span><span class="string">"Kubernetes-native ML model serving with auto-scaling"</span>
+            </div>
+            <div class="line nested">
+                <span class="key">tech_stack</span><span class="equals">=</span><span class="array">["Python", "FastAPI", "Kubernetes", "MLflow", "Prometheus"]</span>
+            </div>
+            <div class="line nested">
+                <span class="key">features</span><span class="equals">=</span><span class="array">["One-click deployment", "A/B testing", "Model monitoring", "Auto-scaling"]</span>
+            </div>
+            <div class="line nested">
+                <span class="key">github</span><span class="equals">=</span><a href="https://github.com/yourusername/mlflow-deploy" class="url">"https://github.com/yourusername/mlflow-deploy"</a>
+            </div>
+            <div class="line nested">
+                <span class="key">docs</span><span class="equals">=</span><a href="https://mlflow-deploy.readthedocs.io" class="url">"https://mlflow-deploy.readthedocs.io"</a>
+            </div>
+
+            <div class="line">
+                <span class="comment"># Personal portfolio with blog</span>
+            </div>
+            <div class="line nested">
+                <span class="section-header">[projects.portfolio]</span>
+            </div>
+            <div class="line nested">
+                <span class="key">description</span><span class="equals">=</span><span class="string">"Static site with integrated blog and project showcase"</span>
+            </div>
+            <div class="line nested">
+                <span class="key">tech_stack</span><span class="equals">=</span><span class="array">["Next.js", "MDX", "Tailwind CSS", "Vercel"]</span>
+            </div>
+            <div class="line nested">
+                <span class="key">features</span><span class="equals">=</span><span class="array">["Blog with MDX", "Dark/light theme", "SEO optimized", "Analytics dashboard"]</span>
+            </div>
+            <div class="line nested">
+                <span class="key">live_site</span><span class="equals">=</span><a href="https://yourname.dev" class="url">"https://yourname.dev"</a>
+            </div>
+            <div class="line nested">
+                <span class="key">github</span><span class="equals">=</span><a href="https://github.com/yourusername/portfolio" class="url">"https://github.com/yourusername/portfolio"</a>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="line">
+                <span class="section-header">[skills]</span>
+            </div>
+            <div class="line">
+                <span class="key">languages</span><span class="equals">=</span><span class="array">["Python", "JavaScript", "TypeScript", "Go", "Rust", "Java"]</span>
+            </div>
+            <div class="line">
+                <span class="key">frontend</span><span class="equals">=</span><span class="array">["React", "Vue.js", "Svelte", "Next.js", "Tailwind CSS"]</span>
+            </div>
+            <div class="line">
+                <span class="key">backend</span><span class="equals">=</span><span class="array">["Node.js", "Django", "FastAPI", "Express", "PostgreSQL", "MongoDB"]</span>
+            </div>
+            <div class="line">
+                <span class="key">devops</span><span class="equals">=</span><span class="array">["Docker", "Kubernetes", "CI/CD", "Terraform", "GitHub Actions"]</span>
+            </div>
+            <div class="line">
+                <span class="key">cloud</span><span class="equals">=</span><span class="array">["AWS", "GCP", "Azure", "Vercel", "Netlify"]</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="line">
+                <span class="section-header">[experience]</span>
+            </div>
+            
+            <div class="line">
+                <span class="comment"># Senior Full Stack Developer at Tech Corp</span>
+            </div>
+            <div class="line nested">
+                <span class="section-header">[experience.tech_corp]</span>
+            </div>
+            <div class="line nested">
+                <span class="key">role</span><span class="equals">=</span><span class="string">"Senior Full Stack Developer"</span>
+            </div>
+            <div class="line nested">
+                <span class="key">company</span><span class="equals">=</span><span class="string">"Tech Corp"</span>
+            </div>
+            <div class="line nested">
+                <span class="key">duration</span><span class="equals">=</span><span class="duration">"Jan 2022 – Present"</span>
+            </div>
+            <div class="line nested">
+                <span class="key">location</span><span class="equals">=</span><span class="string">"San Francisco, CA (Remote)"</span>
+            </div>
+            <div class="line nested">
+                <span class="key">achievements</span><span class="equals">=</span><span class="array">[</span>
+            </div>
+            <div class="line nested" style="padding-left: 40px;">
+                <span class="string">"Led migration of monolithic app to microservices, reducing deployment time by 75%",</span>
+            </div>
+            <div class="line nested" style="padding-left: 40px;">
+                <span class="string">"Architected real-time notification system serving 100k+ daily active users",</span>
+            </div>
+            <div class="line nested" style="padding-left: 40px;">
+                <span class="string">"Mentored 5 junior developers and established code review best practices",</span>
+            </div>
+            <div class="line nested" style="padding-left: 40px;">
+                <span class="string">"Implemented CI/CD pipeline reducing bug reports by 60% and release cycle to 2 weeks"</span>
+            </div>
+            <div class="line nested">
+                <span class="array">]</span>
+            </div>
+            <div class="line nested">
+                <span class="key">tech_stack</span><span class="equals">=</span><span class="array">["React", "Node.js", "TypeScript", "AWS", "Docker", "Kubernetes"]</span>
+            </div>
+
+            <div class="line">
+                <span class="comment"># Full Stack Developer at StartupXYZ</span>
+            </div>
+            <div class="line nested">
+                <span class="section-header">[experience.startupxyz]</span>
+            </div>
+            <div class="line nested">
+                <span class="key">role</span><span class="equals">=</span><span class="string">"Full Stack Developer"</span>
+            </div>
+            <div class="line nested">
+                <span class="key">company</span><span class="equals">=</span><span class="string">"StartupXYZ"</span>
+            </div>
+            <div class="line nested">
+                <span class="key">duration</span><span class="equals">=</span><span class="duration">"Jun 2020 – Dec 2021"</span>
+            </div>
+            <div class="line nested">
+                <span class="key">location</span><span class="equals">=</span><span class="string">"Austin, TX"</span>
+            </div>
+            <div class="line nested">
+                <span class="key">achievements</span><span class="equals">=</span><span class="array">[</span>
+            </div>
+            <div class="line nested" style="padding-left: 40px;">
+                <span class="string">"Built MVP from scratch using React/Django, acquired first 1000 users in 3 months",</span>
+            </div>
+            <div class="line nested" style="padding-left: 40px;">
+                <span class="string">"Developed payment integration with Stripe, processing $100k+ monthly revenue",</span>
+            </div>
+            <div class="line nested" style="padding-left: 40px;">
+                <span class="string">"Optimized database queries reducing API response time from 2s to 200ms",</span>
+            </div>
+            <div class="line nested" style="padding-left: 40px;">
+                <span class="string">"Implemented user analytics dashboard helping increase user retention by 40%"</span>
+            </div>
+            <div class="line nested">
+                <span class="array">]</span>
+            </div>
+            <div class="line nested">
+                <span class="key">tech_stack</span><span class="equals">=</span><span class="array">["React", "Django", "PostgreSQL", "Redis", "Celery", "AWS"]</span>
+            </div>
+
+            <div class="line">
+                <span class="comment"># Junior Developer at WebAgency</span>
+            </div>
+            <div class="line nested">
+                <span class="section-header">[experience.webagency]</span>
+            </div>
+            <div class="line nested">
+                <span class="key">role</span><span class="equals">=</span><span class="string">"Junior Web Developer"</span>
+            </div>
+            <div class="line nested">
+                <span class="key">company</span><span class="equals">=</span><span class="string">"WebAgency"</span>
+            </div>
+            <div class="line nested">
+                <span class="key">duration</span><span class="equals">=</span><span class="duration">"Sep 2019 – May 2020"</span>
+            </div>
+            <div class="line nested">
+                <span class="key">location</span><span class="equals">=</span><span class="string">"Portland, OR"</span>
+            </div>
+            <div class="line nested">
+                <span class="key">achievements</span><span class="equals">=</span><span class="array">[</span>
+            </div>
+            <div class="line nested" style="padding-left: 40px;">
+                <span class="string">"Developed 15+ responsive websites for small business clients",</span>
+            </div>
+            <div class="line nested" style="padding-left: 40px;">
+                <span class="string">"Improved website loading speeds by 50% through image optimization and caching",</span>
+            </div>
+            <div class="line nested" style="padding-left: 40px;">
+                <span class="string">"Collaborated with design team to implement pixel-perfect UI components",</span>
+            </div>
+            <div class="line nested" style="padding-left: 40px;">
+                <span class="string">"Maintained and updated legacy WordPress sites for 20+ clients"</span>
+            </div>
+            <div class="line nested">
+                <span class="array">]</span>
+            </div>
+            <div class="line nested">
+                <span class="key">tech_stack</span><span class="equals">=</span><span class="array">["HTML/CSS", "JavaScript", "WordPress", "PHP", "jQuery"]</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="line">
+                <span class="section-header">[education]</span>
+            </div>
+            <div class="line">
+                <span class="key">degree</span><span class="equals">=</span><span class="string">"B.S. Computer Science"</span>
+            </div>
+            <div class="line">
+                <span class="key">university</span><span class="equals">=</span><span class="string">"University of Technology"</span>
+            </div>
+            <div class="line">
+                <span class="key">year</span><span class="equals">=</span><span class="value">2019</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="line">
+                <span class="section-header">[config]</span>
+            </div>
+            <div class="line">
+                <span class="key">editor</span><span class="equals">=</span><span class="array">["VSCode", "Neovim"]</span>
+            </div>
+            <div class="line">
+                <span class="key">os</span><span class="equals">=</span><span class="string">"macOS Sonoma"</span>
+            </div>
+            <div class="line">
+                <span class="key">terminal</span><span class="equals">=</span><span class="string">"iTerm2"</span>
+            </div>
+            <div class="line">
+                <span class="key">shell</span><span class="equals">=</span><span class="string">"zsh"</span>
+            </div>
+            <div class="line">
+                <span class="key">theme</span><span class="equals">=</span><span class="string">"dark_mode_always"</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="line">
+                <span class="section-header">[preferences]</span>
+            </div>
+            <div class="line">
+                <span class="key">coffee</span><span class="equals">=</span><span class="boolean">true</span>
+            </div>
+            <div class="line">
+                <span class="key">tabs_vs_spaces</span><span class="equals">=</span><span class="string">"spaces"</span>
+            </div>
+            <div class="line">
+                <span class="key">vim_keybindings</span><span class="equals">=</span><span class="boolean">true</span>
+            </div>
+            <div class="line">
+                <span class="key">favorite_language</span><span class="equals">=</span><span class="string">"It depends on the problem"</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="line">
+                <span class="section-header">[hobbies]</span>
+            </div>
+            <div class="line">
+                <span class="key">interests</span><span class="equals">=</span><span class="array">["Open Source", "Machine Learning", "Photography", "Hiking", "Gaming"]</span>
+            </div>
+            <div class="line">
+                <span class="key">currently_reading</span><span class="equals">=</span><span class="string">"Clean Architecture by Robert Martin"</span>
+            </div>
+            <div class="line">
+                <span class="key">current_project</span><span class="equals">=</span><span class="string">"Building a personal AI assistant"</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="line">
+                <span class="comment"># Want to collaborate? Drop me a message!</span>
+            </div>
+            <div class="line">
+                <span class="comment"># Available for: full-time, consulting, open source contributions</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add some interactive functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add click-to-copy functionality for key-value pairs
+            const lines = document.querySelectorAll('.line');
+            
+            lines.forEach(line => {
+                line.addEventListener('click', function() {
+                    const text = this.textContent.trim();
+                    if (text && !text.startsWith('#') && !text.startsWith('[')) {
+                        navigator.clipboard.writeText(text).then(function() {
+                            // Visual feedback
+                            line.style.backgroundColor = 'rgba(56, 139, 253, 0.2)';
+                            setTimeout(() => {
+                                line.style.backgroundColor = '';
+                            }, 200);
+                        }).catch(function(err) {
+                            console.log('Could not copy text: ', err);
+                        });
+                    }
+                });
+            });
+
+            // Add keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'k' && (e.ctrlKey || e.metaKey)) {
+                    e.preventDefault();
+                    // Focus first link
+                    const firstLink = document.querySelector('a');
+                    if (firstLink) firstLink.focus();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
