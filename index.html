@@ -10,7 +10,19 @@
             padding: 0;
             box-sizing: border-box;
         }
-
+        .cursor {
+            position: absolute;
+            width: 2px;
+            height: 20px;
+            background-color: #00ff88;
+            animation: blink-cursor 1s infinite;
+            pointer-events: none;
+            z-index: 10000;
+        }
+        @keyframes blink-cursor {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
         body {
             font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
             background: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 100%);
@@ -19,7 +31,6 @@
             padding: 20px;
             min-height: 100vh;
         }
-
         .terminal-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -29,7 +40,6 @@
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
             overflow: hidden;
         }
-
         .terminal-header {
             background: linear-gradient(90deg, #2d2d2d, #3a3a3a);
             padding: 12px 20px;
@@ -37,50 +47,41 @@
             display: flex;
             align-items: center;
         }
-
         .terminal-buttons {
             display: flex;
             gap: 8px;
             margin-right: 15px;
         }
-
         .btn {
             width: 12px;
             height: 12px;
             border-radius: 50%;
         }
-
         .btn.close { background: #ff5f56; }
         .btn.minimize { background: #ffbd2e; }
         .btn.maximize { background: #27ca3f; }
-
         .terminal-title {
             font-size: 14px;
             color: #ccc;
             font-weight: 500;
         }
-
         .terminal-content {
             padding: 30px;
             font-size: 14px;
             line-height: 1.8;
         }
-
         .prompt {
             color: #00ff88;
             font-weight: bold;
         }
-
         .command {
             color: #61dafb;
             font-weight: bold;
         }
-
         .output {
             margin-left: 0;
             margin-bottom: 25px;
         }
-
         .section-title {
             color: #ff6b6b;
             font-size: 18px;
@@ -89,33 +90,27 @@
             padding-bottom: 8px;
             margin: 30px 0 20px 0;
         }
-
         .highlight {
             color: #ffd93d;
             font-weight: bold;
         }
-
         .metric {
             color: #ff8c42;
             font-weight: bold;
         }
-
         .tech {
             color: #4ecdc4;
             font-weight: 500;
         }
-
         .link {
             color: #61dafb;
             text-decoration: none;
             border-bottom: 1px dotted #61dafb;
         }
-
         .link:hover {
             color: #21a0c4;
             border-bottom-color: #21a0c4;
         }
-
         .job-header {
             background: #252525;
             padding: 15px;
@@ -123,29 +118,24 @@
             margin: 20px 0 15px 0;
             border-radius: 4px;
         }
-
         .job-title {
             color: #00ff88;
             font-size: 16px;
             font-weight: bold;
         }
-
         .company {
             color: #ffd93d;
             font-weight: bold;
         }
-
         .duration {
             color: #ff8c42;
             font-style: italic;
         }
-
         .achievement {
             margin: 8px 0;
             padding-left: 20px;
             position: relative;
         }
-
         .achievement::before {
             content: "▸";
             color: #00ff88;
@@ -153,7 +143,6 @@
             left: 0;
             font-weight: bold;
         }
-
         .project-card {
             background: #252525;
             border: 1px solid #404040;
@@ -162,26 +151,22 @@
             margin: 15px 0;
             border-left: 4px solid #4ecdc4;
         }
-
         .project-title {
             color: #4ecdc4;
             font-size: 16px;
             font-weight: bold;
             margin-bottom: 8px;
         }
-
         .project-description {
             color: #ccc;
             margin-bottom: 12px;
         }
-
         .tech-stack {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
             margin: 12px 0;
         }
-
         .tech-tag {
             background: #333;
             color: #4ecdc4;
@@ -190,7 +175,6 @@
             font-size: 12px;
             border: 1px solid #4ecdc4;
         }
-
         .skill-category {
             margin: 15px 0;
             padding: 15px;
@@ -198,37 +182,31 @@
             border-radius: 6px;
             border-left: 3px solid #ff6b6b;
         }
-
         .skill-category-title {
             color: #ff6b6b;
             font-weight: bold;
             margin-bottom: 8px;
         }
-
         .skills-list {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
             margin: 15px 0;
         }
-
         .typing-animation {
             border-right: 2px solid #00ff88;
             animation: blink 1s infinite;
         }
-
         @keyframes blink {
             0%, 50% { border-color: #00ff88; }
             51%, 100% { border-color: transparent; }
         }
-
         .performance-metrics {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 15px;
             margin: 20px 0;
         }
-
         .metric-card {
             background: #2a2a2a;
             padding: 15px;
@@ -236,20 +214,17 @@
             border: 1px solid #444;
             text-align: center;
         }
-
         .metric-value {
             color: #ffd93d;
             font-size: 24px;
             font-weight: bold;
             display: block;
         }
-
         .metric-label {
             color: #ccc;
             font-size: 12px;
             margin-top: 5px;
         }
-
         /* Responsive Design */
         @media (max-width: 768px) {
             body {
@@ -274,7 +249,6 @@
                 align-items: flex-start;
             }
         }
-
         @media (max-width: 480px) {
             .terminal-content {
                 padding: 15px 10px;
@@ -289,21 +263,17 @@
                 padding: 10px;
             }
         }
-
         /* Custom scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
-
         ::-webkit-scrollbar-track {
             background: #1e1e1e;
         }
-
         ::-webkit-scrollbar-thumb {
             background: #444;
             border-radius: 4px;
         }
-
         ::-webkit-scrollbar-thumb:hover {
             background: #555;
         }
@@ -326,78 +296,12 @@
                 <span class="highlight">Tarun Thakur</span> - Senior Systems Architect<br>
                 <span class="tech">Performance-obsessed engineer specializing in sub-millisecond systems</span>
             </div>
-
             <div class="output">
                 <span class="prompt">$</span> <span class="command">cat contact.info</span><br>
                 LinkedIn: <a href="https://www.linkedin.com/in/tarun-thakur-6316a6206" class="link">linkedin.com/in/tarun-thakur-6316a6206</a><br>
                 GitHub: <a href="https://github.com/bihari123" class="link">github.com/bihari123</a><br>
                 Location: <span class="tech">Global (Remote)</span>
             </div>
-
-            <div class="section-title">Performance Metrics & Technical Impact</div>
-            <div class="performance-metrics">
-                <div class="metric-card">
-                    <span class="metric-value">3x</span>
-                    <div class="metric-label">Graph DB Performance vs Neo4j</div>
-                    <div style="font-size: 10px; color: #888; margin-top: 5px;">Custom RDF engine - Patent pending</div>
-                </div>
-                <div class="metric-card">
-                    <span class="metric-value">3s</span>
-                    <div class="metric-label">Glass-to-glass Streaming Latency</div>
-                    <div style="font-size: 10px; color: #888; margin-top: 5px;">Industry standard: 8-15s</div>
-                </div>
-                <div class="metric-card">
-                    <span class="metric-value">50K</span>
-                    <div class="metric-label">RPS on Single Core (Rust)</div>
-                    <div style="font-size: 10px; color: #888; margin-top: 5px;">nginx: ~10K, Apache: ~5K</div>
-                </div>
-                <div class="metric-card">
-                    <span class="metric-value">&lt;200ms</span>
-                    <div class="metric-label">AI Voice-to-Response Latency</div>
-                    <div style="font-size: 10px; color: #888; margin-top: 5px;">Whisper + LlamaCPP pipeline</div>
-                </div>
-                <div class="metric-card">
-                    <span class="metric-value">&lt;10MB</span>
-                    <div class="metric-label">IoT System Monitor Memory</div>
-                    <div style="font-size: 10px; color: #888; margin-top: 5px;">Full HTTPS server + monitoring</div>
-                </div>
-                <div class="metric-card">
-                    <span class="metric-value">85%</span>
-                    <div class="metric-label">GC Pressure Reduction</div>
-                    <div style="font-size: 10px; color: #888; margin-top: 5px;">Custom memory allocation</div>
-                </div>
-                <div class="metric-card">
-                    <span class="metric-value">4x</span>
-                    <div class="metric-label">SIMD Frame Processing Speedup</div>
-                    <div style="font-size: 10px; color: #888; margin-top: 5px;">1080p→4K real-time upscaling</div>
-                </div>
-                <div class="metric-card">
-                    <span class="metric-value">O(1)</span>
-                    <div class="metric-label">Space Complexity (from O(n))</div>
-                    <div style="font-size: 10px; color: #888; margin-top: 5px;">Hilbert curve optimization</div>
-                </div>
-                <div class="metric-card">
-                    <span class="metric-value">99.9%</span>
-                    <div class="metric-label">UDP Packet Delivery Rate</div>
-                    <div style="font-size: 10px; color: #888; margin-top: 5px;">Under 10Gbps load testing</div>
-                </div>
-                <div class="metric-card">
-                    <span class="metric-value">&lt;100μs</span>
-                    <div class="metric-label">Coordination Service Failover</div>
-                    <div style="font-size: 10px; color: #888; margin-top: 5px;">etcd-based consensus protocol</div>
-                </div>
-                <div class="metric-card">
-                    <span class="metric-value">25%</span>
-                    <div class="metric-label">Protocol Handshake Improvement</div>
-                    <div style="font-size: 10px; color: #888; margin-top: 5px;">Moonlight: 12s→9s optimization</div>
-                </div>
-                <div class="metric-card">
-                    <span class="metric-value">10x</span>
-                    <div class="metric-label">Binary Protocol Compression</div>
-                    <div style="font-size: 10px; color: #888; margin-top: 5px;">vs JSON for IoT telemetry</div>
-                </div>
-            </div>
-
             <div class="section-title">Core Expertise</div>
             <div class="skills-list">
                 <div class="skill-category">
@@ -425,9 +329,7 @@
                     <span class="tech">Custom storage engines, PostgreSQL internals, Graph databases, OpenSearch</span>
                 </div>
             </div>
-
             <div class="section-title">Professional Experience</div>
-
             <div class="job-header">
                 <div class="job-title">Software Engineer SDE2</div>
                 <div class="company">Straughton Street Tech Labs</div>
@@ -460,7 +362,6 @@
                     <span class="tech-tag">inotify</span>
                 </div>
             </div>
-
             <div class="job-header">
                 <div class="job-title">Founding Engineer</div>
                 <div class="company">Shaga Labs Inc</div>
@@ -492,7 +393,6 @@
                     <span class="tech-tag">Lock-free programming</span>
                 </div>
             </div>
-
             <div class="job-header">
                 <div class="job-title">Sr. Backend Engineer</div>
                 <div class="company">VectorEdge Pvt Ltd</div>
@@ -526,7 +426,6 @@
                     <span class="tech-tag">LSM</span>
                 </div>
             </div>
-
             <div class="job-header">
                 <div class="job-title">Backend Engineer</div>
                 <div class="company">Obliques Labs Pvt Ltd</div>
@@ -553,9 +452,7 @@
                     <span class="tech-tag">Microservices</span>
                 </div>
             </div>
-
             <div class="section-title">Open Source Impact</div>
-
             <div class="project-card">
                 <div class="project-title">Naarad - Zero-Overhead File Monitoring</div>
                 <div class="project-description">
@@ -576,7 +473,6 @@
                     🎥 <a href="#" class="link" style="color: #ffd93d;">Video Demo</a> <span style="color: #888; font-size: 12px;"></span>
                 </div>
             </div>
-
             <div class="project-card">
                 <div class="project-title">Beirbal - Enterprise NLP Platform</div>
                 <div class="project-description">
@@ -595,7 +491,6 @@
                     🎥 <a href="#" class="link" style="color: #ffd93d;">Video Demo</a> <span style="color: #888; font-size: 12px;"></span>
                 </div>
             </div>
-
             <div class="project-card">
                 <div class="project-title">RustyAgent - Ultra-Lightweight IoT Monitor</div>
                 <div class="project-description">
@@ -620,7 +515,6 @@
                     🎥 <a href="#" class="link" style="color: #ffd93d;">Video Demo</a> <span style="color: #888; font-size: 12px;"></span>
                 </div>
             </div>
-
             <div class="section-title">Education & Research</div>
             <div class="output">
                 <span class="prompt">$</span> <span class="command">cat education.log</span><br><br>
@@ -628,19 +522,15 @@
                 <strong><span class="highlight">University of London</span> (LSE Academic Direction)</strong><br>
                 B.Sc. Mathematics and Economics | Expected: <span class="duration">November 2027</span><br>
                 Mode: <span class="tech">Remote Study</span> | <a href="https://drive.google.com/file/d/1CIsdDA5DTW3RqmCyLzC3ucVpDFUAGgC8/view?usp=sharing" class="link">Enrollment Verification</a><br><br>
-
                 <strong><span class="highlight">Academic Excellence</span></strong><br>
                 • <span class="metric">AIR 24</span> in Delhi University M.Sc. Informatics Entrance<br>
                 • <span class="metric">94%</span> in CBSE Class XII<br>
                 • Merit certificates for extraordinary academic performance<br><br>
-
                 <strong><span class="highlight">Research Publications</span></strong><br>
                 • <span class="tech">Patent Application:</span> Graph Database Architecture Innovation<br>
                 • <span class="tech">Research Paper:</span> <a href="https://drive.google.com/file/d/1sP-f26RyPjXs8lHkaRXdwEsnvMj7oMA0/view?usp=sharing" class="link">Indoor Navigation Pathfinding Algorithm</a><br>
             </div>
-
             <div class="section-title">Research Projects</div>
-
             <div class="project-card">
                 <div class="project-title">Python-based CNC Machine Control System</div>
                 <div class="project-description">
@@ -656,7 +546,6 @@
                     🎥 <a href="#" class="link" style="color: #ffd93d;">Video Demo</a> <span style="color: #888; font-size: 12px;"></span>
                 </div>
             </div>
-
             <div class="project-card">
                 <div class="project-title">Indoor Navigation System for Visually Impaired</div>
                 <div class="project-description">
@@ -679,7 +568,6 @@
                     🎥 <a href="#" class="link" style="color: #ffd93d;">Video Demo</a> <span style="color: #888; font-size: 12px;"></span>
                 </div>
             </div>
-
             <div class="section-title">Technical Leadership & Impact</div>
             <div class="output">
                 <span class="prompt">$</span> <span class="command">./calculate_impact.sh</span><br><br>
@@ -740,7 +628,6 @@
                 • Cost savings: <span class="metric">$50K+ annually</span> for enterprise users<br>
                 • Community contributions to <span class="tech">Linux kernel ecosystem</span>
             </div>
-
             <div class="output">
                 <span class="prompt">$</span> <span class="command">echo "Available for Staff/Principal Engineer roles"</span><br>
                 <span class="highlight">Seeking technical leadership opportunities in deep tech companies</span><br>
@@ -749,7 +636,6 @@
             </div>
         </div>
     </div>
-
     <script>
         // Add interactive functionality for video demo links
         document.addEventListener('DOMContentLoaded', function() {
@@ -789,7 +675,6 @@
                     });
                 }
             });
-
             // Add click-to-copy functionality for other links
             const links = document.querySelectorAll('.link:not([href="#"])');
             links.forEach(link => {
@@ -808,7 +693,6 @@
                     });
                 }
             });
-
             // Add terminal-like interaction
             document.addEventListener('keydown', function(e) {
                 if (e.ctrlKey && e.key === 'l') {
@@ -816,6 +700,33 @@
                     window.scrollTo(0, 0);
                 }
             });
+        });
+
+        // Add blinking cursor on click and hover
+        let cursor = null;
+        
+        function createCursor(x, y) {
+            // Remove any existing cursor
+            if (cursor) {
+                cursor.remove();
+            }
+            
+            // Create new cursor at position
+            cursor = document.createElement('div');
+            cursor.className = 'cursor';
+            cursor.style.left = x + 'px';
+            cursor.style.top = y + 'px';
+            document.body.appendChild(cursor);
+        }
+        
+        // Create cursor on click
+        document.addEventListener('click', function(e) {
+            createCursor(e.pageX, e.pageY);
+        });
+        
+        // Move cursor on hover
+        document.addEventListener('mousemove', function(e) {
+            createCursor(e.pageX, e.pageY);
         });
     </script>
 </body>
